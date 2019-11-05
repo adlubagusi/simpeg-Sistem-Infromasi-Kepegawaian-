@@ -65,8 +65,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama`, `level`, `log`) VALUES
-(2, 'admin', '202cb962ac59075b964b07152d234b70', 'admin', 'admin', '2018-03-30 02:51:21'),
-(3, 'user', '202cb962ac59075b964b07152d234b70', 'User', 'user', '2018-04-02 18:27:39');
+(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '2018-03-30 02:51:21'),
+(3, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'User', 'user', '2018-04-02 18:27:39');
 
 -- --------------------------------------------------------
 
