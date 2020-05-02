@@ -6,10 +6,10 @@ class Admin extends CI_controller
   {
    parent:: __construct();
    // error_reporting(0);
-   if($this->session->userdata('admin') != TRUE){
-     redirect(base_url(''));
-     exit;
-  };
+    if($this->session->userdata('admin') != TRUE){
+      redirect(base_url(''));
+      exit;
+    };
    $this->load->model('m_admin');
   }
 
@@ -32,12 +32,11 @@ class Admin extends CI_controller
 
   public function jabatan_tambah()
   {
-  $sql=$this->db->get_where('jabatan',array('id_jabatan'=>$id))->row_array(); 
-  $x = array('judul'        =>'Tambah Data Jabatan' ,
-              'aksi'        =>'tambah',
-        'nama_jabatan'=>$sql['nama_jabatan'],
-        'golongan'    =>$sql['golongan'],
-        'tunjangan'         =>$sql['tunjangan']); 
+  $x = array('judul'        => 'Tambah Data Jabatan' ,
+              'aksi'        => 'tambah',
+              'nama_jabatan'=> "",
+              'golongan'    => "",
+              'tunjangan'   => ""); 
     if(isset($_POST['kirim'])){
       $inputData=array(
         'nama_jabatan'=>$this->input->post('nama_jabatan'),
@@ -60,7 +59,7 @@ class Admin extends CI_controller
     }
   }
     
-    public function jabatan_edit($id='')
+  public function jabatan_edit($id='')
   {
   $sql=$this->db->get_where('jabatan',array('id_jabatan'=>$id))->row_array(); 
   $x = array('judul'        =>'Tambah Data Jabatan' ,
@@ -144,38 +143,35 @@ class Admin extends CI_controller
       $this->load->library('upload', $config);
       $this->upload->initialize($config);
       if($this->upload->do_upload('gambar')){
-        
-$SQLinsert=array(
-'id_jabatan'=>$this->input->post('id_jabatan'),
-'nip'=>$this->input->post('nip'),
-'nama'=>$this->input->post('nama'),
-'jk'=>$this->input->post('jk'),
-'foto'=>$this->upload->file_name,
-'agama'=>$this->input->post('agama'),
-'pendidikan'=>$this->input->post('pendidikan'),
-'status_kep'=>$this->input->post('status_kep'),
-'alamat'=>$this->input->post('alamat'),
-'username'=>$this->input->post('username'),
-'password'=>md5($this->input->post('password'))
-);
+        $SQLinsert=array(
+        'id_jabatan'=>$this->input->post('id_jabatan'),
+        'nip'=>$this->input->post('nip'),
+        'nama'=>$this->input->post('nama'),
+        'jk'=>$this->input->post('jk'),
+        'foto'=>$this->upload->file_name,
+        'agama'=>$this->input->post('agama'),
+        'pendidikan'=>$this->input->post('pendidikan'),
+        'status_kep'=>$this->input->post('status_kep'),
+        'alamat'=>$this->input->post('alamat'),
+        'username'=>$this->input->post('username'),
+        'password'=>md5($this->input->post('password'))
+        );
 
-$cek=$this->db->insert('pegawai',$SQLinsert);
-if($cek){
-    $pesan='<div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-check"></i> Success!</h4>
-               Data Berhasil Di Tambahkan.
-              </div>';
-    $this->session->set_flashdata('pesan',$pesan);
-    redirect(base_url('admin/pegawai'));
-}else{
- echo "QUERY SQL ERROR";
-}
-
+        $cek=$this->db->insert('pegawai',$SQLinsert);
+        if($cek){
+            $pesan='<div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Success!</h4>
+                       Data Berhasil Di Tambahkan.
+                      </div>';
+            $this->session->set_flashdata('pesan',$pesan);
+            redirect(base_url('admin/pegawai'));
+        }else{
+         echo "QUERY SQL ERROR";
+        }
       }else{
         echo $this->upload->display_errors();
       }
-
     }else{
       tpl('admin/pegawai_form',$x);
     } 
@@ -190,10 +186,10 @@ if($cek){
     'aksi'=>'edit',
     'judul' =>'Tambah Data Pegawai' ,
     'jabatan'=>$this->db->get('jabatan')->result_array(),
-    'id_jabatan'=>'',
+    'id_jabatan'=>$data['id_jabatan'],
     'nip'=>$data['nip'],
     'nama'=>$data['nama'],
-    'jk'=>'',
+    'jk'=>$data['jk'],
     'foto'=>$data['foto'],
     'agama'=>$data['agama'],
     'pendidikan'=>$data['pendidikan'],
@@ -202,74 +198,69 @@ if($cek){
     'username'=>$data['username']
   );
     
- if (isset($_POST['kirim'])) {     
- if(empty($_FILES['gambar']['name'])){
-$SQLinsert=array(
-'id_jabatan'=>$this->input->post('id_jabatan'),
-'nip'=>$this->input->post('nip'),
-'nama'=>$this->input->post('nama'),
-'jk'=>$this->input->post('jk'),
-'foto'=>$this->upload->file_name,
-'agama'=>$this->input->post('agama'),
-'pendidikan'=>$this->input->post('pendidikan'),
-'status_kep'=>$this->input->post('status_kep'),
-'alamat'=>$this->input->post('alamat'),
-'username'=>$this->input->post('username'),
-'password'=>md5($this->input->post('password'))
-);
+  if (isset($_POST['kirim'])) {     
+    if(empty($_FILES['gambar']['name'])){
+      $SQLinsert=array(
+      'id_jabatan'=>$this->input->post('id_jabatan'),
+      'nip'=>$this->input->post('nip'),
+      'nama'=>$this->input->post('nama'),
+      'jk'=>$this->input->post('jk'),
+      //'foto'=>$this->upload->file_name,
+      'agama'=>$this->input->post('agama'),
+      'pendidikan'=>$this->input->post('pendidikan'),
+      'status_kep'=>$this->input->post('status_kep'),
+      'alamat'=>$this->input->post('alamat'),
+      'username'=>$this->input->post('username'),
+      //'password'=>md5($this->input->post('password'))
+      );
 
-  $this->db->update('pegawai',$SQLinsert,array('id_pegawai'=>$id));
-  $pesan='<div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h4><i class="icon fa fa-check"></i> Success!</h4>
-                 Data Berhasil Di Edit.
-                </div>';
+      $this->db->update('pegawai',$SQLinsert,array('id_pegawai'=>$id));
+      $pesan='<div class="alert alert-success alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                      <h4><i class="icon fa fa-check"></i> Success!</h4>
+                     Data Berhasil Di Edit.
+                    </div>';
       $this->session->set_flashdata('pesan',$pesan);
       redirect(base_url('admin/pegawai'));
-   }else{
-
-
+    }else{
         $config['upload_path'] = './template/data/'; 
         $config['allowed_types'] = 'bmp|jpg|png';  
         $config['file_name'] = 'foto_'.time();  
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         if($this->upload->do_upload('gambar')){
-          
-$SQLinsert=array(
-'id_jabatan'=>$this->input->post('id_jabatan'),
-'nip'=>$this->input->post('nip'),
-'nama'=>$this->input->post('nama'),
-'jk'=>$this->input->post('jk'),
-'foto'=>$this->upload->file_name,
-'agama'=>$this->input->post('agama'),
-'pendidikan'=>$this->input->post('pendidikan'),
-'status_kep'=>$this->input->post('status_kep'),
-'alamat'=>$this->input->post('alamat'),
-'username'=>$this->input->post('username'),
-'password'=>md5($this->input->post('password'))
-);
-
-  $cek=$this->db->update('pegawai',$SQLinsert,array('id_pegawai'=>$id));
-  if($cek){
-      $pesan='<div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h4><i class="icon fa fa-check"></i> Success!</h4>
-                 Data Berhasil Di Edit.
-                </div>';
-      $this->session->set_flashdata('pesan',$pesan);
-      redirect(base_url('admin/pegawai'));
-  }else{
-   echo "QUERY SQL ERROR";
-  }
-
+          $SQLinsert=array(
+          'id_jabatan'=>$this->input->post('id_jabatan'),
+          'nip'=>$this->input->post('nip'),
+          'nama'=>$this->input->post('nama'),
+          'jk'=>$this->input->post('jk'),
+          'foto'=>$this->upload->file_name,
+          'agama'=>$this->input->post('agama'),
+          'pendidikan'=>$this->input->post('pendidikan'),
+          'status_kep'=>$this->input->post('status_kep'),
+          'alamat'=>$this->input->post('alamat'),
+          'username'=>$this->input->post('username'),
+          //'password'=>md5($this->input->post('password'))
+          );
+          $cek=$this->db->update('pegawai',$SQLinsert,array('id_pegawai'=>$id));
+          if($cek){
+              $pesan='<div class="alert alert-success alert-dismissible">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          <h4><i class="icon fa fa-check"></i> Success!</h4>
+                         Data Berhasil Di Edit.
+                        </div>';
+              $this->session->set_flashdata('pesan',$pesan);
+              redirect(base_url('admin/pegawai'));
+          }else{
+           echo "QUERY SQL ERROR";
+          }
         }else{
           echo $this->upload->display_errors();
         }
-       }
-      }else{
-        tpl('admin/pegawai_form',$x);
-      }
+     }
+    }else{
+      tpl('admin/pegawai_form',$x);
+    }
   }
    
 
@@ -352,14 +343,12 @@ if ($hitung > 31) {
     
     if($hadir >= 10 ){
       $kehadiran='30%';
-    }
-    if($hadir >= 20){
+    }else if($hadir >= 20){
       $kehadiran='10%';
-    }
-    if($hadir > 25){
-      $kehadiran='5%';
-    }
-    if($hadir < 10) {
+      if($hadir > 25){
+        $kehadiran='5%';
+      }
+    }else if($hadir < 10) {
       $kehadiran='50%';
     }else{
       $kehadiran='0%';
@@ -601,54 +590,65 @@ public function profil()
 
 public function profil_pegawai($value='')
 {
-if(isset($_POST['kirim'])){
-
+  if(isset($_POST['kirim'])){
+    $vaPassword = array('password'=>$this->input->post('password'));
+    $vaWhere    = array('id_pegawai'=>$this->session->userdata('id_pegawai'));
+    if(isset($_FILES['gambar']['name'])){
       $config['upload_path'] = './template/data/'; 
       $config['allowed_types'] = 'bmp|jpg|png';  
       $config['file_name'] = 'foto_'.time();  
       $this->load->library('upload', $config);
       $this->upload->initialize($config);
       if($this->upload->do_upload('gambar')){
-
-$sql=array(
-'nip'=>$this->input->post('nip'),
-'nama'=>$this->input->post('nama'),
-'jk'=>$this->input->post('jk'),
-'foto'=>$this->upload->file_name,
-'agama'=>$this->input->post('agama'),
-'pendidikan'=>$this->input->post('pendidikan'),
-'alamat'=>$this->input->post('alamat'),
-'username'=>$this->input->post('username'),
-'password'=>$this->input->post('password')
-);
-
-$cek=$this->db->update('pegawai',$sql,array('id_pegawai'=>$this->session->userdata('id_pegawai')));
-if($cek){
-     $pesan='<div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-check"></i> Success!</h4>
-               Data Berhasil Di Edit.
-              </div>';
-    $this->session->set_flashdata('pesan',$pesan);
-    redirect(base_url('admin/profil_pegawai'));
-}else{
-  buat_alert('ERROR');
-}
-}else{
-  echo $this->upload->display_errors();
-}
-}else{
-$data=$this->db->get_where('pegawai',array('id_pegawai' =>$this->session->userdata('id_pegawai')))->row_array();
-$x = array(
-   'judul' =>'.:: Edit Profil Anda ::.',
-   'aksi'=>'edit',
-   'foto'=>$data['foto'],
-   'nama'=>$data['nama'],
-   'nip'=>$data['nip'],
-   'pendidikan'=>$data['pendidikan'],
-   'username'=>$data['username']);
-tpl('admin/profil_pegawai',$x);
-}
+        $vaFoto     = array('foto'=>$this->upload->file_name);
+        $this->db->update('pegawai',$vaFoto,$vaWhere);  
+      }else{
+        echo $this->upload->display_errors();
+      }
+    }
+    
+    if($this->input->post('password') !== ""){
+      $this->db->update('pegawai',$vaPassword,$vaWhere);  
+    }
+    
+    $sql=array(
+      'nip'=>$this->input->post('nip'),
+      'nama'=>$this->input->post('nama'),
+      'jk'=>$this->input->post('jk'),
+      'agama'=>$this->input->post('agama'),
+      'pendidikan'=>$this->input->post('pendidikan'),
+      'alamat'=>$this->input->post('alamat'),
+      'username'=>$this->input->post('username'),
+    );
+    
+    
+    $cek=$this->db->update('pegawai',$sql,$vaWhere);
+    if($cek){
+       $pesan='<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h4><i class="icon fa fa-check"></i> Success!</h4>
+                 Data Berhasil Di Edit.
+                </div>';
+      $this->session->set_flashdata('pesan',$pesan);
+      redirect(base_url('admin/profil_pegawai'));
+    }else{
+      buat_alert('ERROR');
+    }
+  }else{
+    $data=$this->db->get_where('pegawai',array('id_pegawai' =>$this->session->userdata('id_pegawai')))->row_array();
+    $x = array(
+       'judul' =>'.:: Edit Profil Anda ::.',
+       'aksi'=>'edit',
+       'foto'=>$data['foto'],
+       'nama'=>$data['nama'],
+       'jk'=>$data['jk'],
+       'alamat'=>$data['alamat'],
+       'nip'=>$data['nip'],
+       'agama'=>$data['agama'],
+       'pendidikan'=>$data['pendidikan'],
+       'username'=>$data['username']);
+      tpl('admin/profil_pegawai',$x);
+  }
 }
 
 

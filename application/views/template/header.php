@@ -133,8 +133,8 @@ if($this->session->userdata('level') =="admin"){
 
 <?php if($this->session->userdata('level') == "admin"){ ?>
 
-        <li class="active">
-          <a href="<?= base_url('admin') ?>">
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-cubes"></i> <span>Data Pegawai</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -188,7 +188,7 @@ if($this->session->userdata('level') =="admin"){
           </ul>
         </li>    
 
-      <li class="active">
+      <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Data User/Hak Akses</span>
             <span class="pull-right-container">

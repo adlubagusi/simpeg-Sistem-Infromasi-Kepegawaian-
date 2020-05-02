@@ -1,16 +1,17 @@
 <?php 
 function barasiah($nilai='')
 {
-	return mysql_real_escape_string(addslashes($nilai));
+  $db = get_instance()->db->conn_id;
+	return mysqli_real_escape_string($db,addslashes($nilai));
 }
 
   function tpl($konten,$array)
   {
 
-  $CI =& get_instance();
-  $CI->load->view('template/header',$array);
-  $CI->load->view($konten);
-  $CI->load->view('template/footer');
+    $CI =& get_instance();
+    $CI->load->view('template/header',$array);
+    $CI->load->view($konten);
+    $CI->load->view('template/footer');
   }
 
 

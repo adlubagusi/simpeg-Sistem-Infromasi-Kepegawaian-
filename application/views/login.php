@@ -40,7 +40,7 @@
  
   <!-- /.login-logo -->
   <div class="login-box-body">
-   <?= $this->session->flashdata('pesan'); ?>
+    <?= $this->session->flashdata('pesan'); ?>
     <form action="" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="username" placeholder="Username" required="">
