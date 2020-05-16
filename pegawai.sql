@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Bulan Mei 2020 pada 23.31
+-- Waktu pembuatan: 17 Bulan Mei 2020 pada 01.29
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.3
 
@@ -43,8 +43,7 @@ CREATE TABLE `absen` (
 --
 
 INSERT INTO `absen` (`id_absen`, `id_pegawai`, `hadir`, `izin`, `tidak_hadir`, `bulan`, `tanggal`) VALUES
-(10, 8, 30, 0, 0, 1, '2018-04-02'),
-(12, 9, 10, 10, 10, 5, '2020-05-01');
+(13, 10, 20, 0, 0, 1, '2020-05-17');
 
 -- --------------------------------------------------------
 
@@ -127,7 +126,9 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `id_jabatan`, `nip`, `nama`, `jk`, `foto`, `agama`, `pendidikan`, `status_kep`, `alamat`, `username`, `password`) VALUES
-(9, 13, '200108312018110801002', 'Adlu Bagus Irawan', '0', 'foto_1588345007.jpg', 'islam', 'SMK RPL', 'Tetap', 'Jl Gatot Subroto VI F, Denpasar, Bali', 'adlubagusi', '827ccb0eea8a706c4c34a16891f84e7b');
+(9, 10, '200108312018110801002', 'Adlu Bagus Irawan', 'L', 'foto_1588345007.jpg', 'islam', 'SMK RPL', 'Tetap', 'Jl Gatot Subroto VI F, Denpasar, Bali', 'adlubagusi', '827ccb0eea8a706c4c34a16891f84e7b'),
+(10, 15, '200012052018110801001', 'Hatsune Miku', 'P', 'foto_1589668962.jpg', 'lainnya', 'SMK RPL', 'Tetap', 'Tokyo, Japan', 'miku2255', '827ccb0eea8a706c4c34a16891f84e7b'),
+(11, 17, '200007152018110801003', 'Kizuna Ai', 'P', 'foto_1589669245.jpg', 'lainnya', 'SMK Multimedia', 'Magang', 'Sapporo, Japan', 'kizunaai_', '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,8 @@ CREATE TABLE `tpp` (
 
 INSERT INTO `tpp` (`id_tpp`, `id_pegawai`, `jumlah_tpp`, `jumlah_potongan`, `bulan_t`, `tahun`, `tgl`) VALUES
 (7, 8, '300000', '0%', 1, 2018, '2018-04-02'),
-(9, 9, '12750000', '0%', 5, 2020, '2020-05-01');
+(9, 9, '12750000', '0%', 5, 2020, '2020-05-01'),
+(10, 10, '8749970', '30%', 1, 2020, '2020-05-17');
 
 --
 -- Indexes for dumped tables
@@ -195,13 +197,13 @@ ALTER TABLE `tpp`
 -- AUTO_INCREMENT untuk tabel `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `jabatan`
@@ -213,13 +215,13 @@ ALTER TABLE `jabatan`
 -- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tpp`
 --
 ALTER TABLE `tpp`
-  MODIFY `id_tpp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_tpp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

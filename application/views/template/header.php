@@ -82,7 +82,7 @@ if($this->session->userdata('level') =="admin"){
                  
                 <p>
                   <?= $data['username'] ?> - <?= $data['nama'] ?>
-                  <small><?= $data['log'] ?></small>
+                  <small><?= isset($data['log']) ? $data['log'] : ""; ?></small>
                 </p>
               </li>
  
@@ -172,7 +172,7 @@ if($this->session->userdata('level') =="admin"){
           </ul>
         </li>   
 
-<li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>Laporan </span>
@@ -182,7 +182,7 @@ if($this->session->userdata('level') =="admin"){
           </a>
           <ul class="treeview-menu">
             <li><a href="<?= base_url('laporan/laporan_pegawai'); ?>"><i class="fa fa-circle-o"></i> Data Pegawai</a></li>
-             <li><a href="<?= base_url('laporan/laporan_absensi'); ?>"><i class="fa fa-circle-o"></i> Data Absesensi</a></li>
+             <li><a href="<?= base_url('laporan/laporan_absensi'); ?>"><i class="fa fa-circle-o"></i> Data Absensi</a></li>
               <li><a href="<?= base_url('laporan/laporan_tpp'); ?>"><i class="fa fa-circle-o"></i> Data TPP</a></li>
             
           </ul>
@@ -219,7 +219,6 @@ if($this->session->userdata('level') =="admin"){
   
 <?php }elseif($this->session->userdata('level') == "pegawai"){ ?>
 
-
  <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -245,7 +244,7 @@ if($this->session->userdata('level') =="admin"){
             <li><a href="<?= base_url('admin/absensi'); ?>"><i class="fa fa-circle-o"></i> Absensi Pegawai</a></li>
           </ul>
         </li> 
-  
+
 <?php } ?>
   <li class="header">END MAIN NAVIGATION</li>
       </ul>

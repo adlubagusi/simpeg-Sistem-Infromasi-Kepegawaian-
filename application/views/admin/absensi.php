@@ -37,10 +37,8 @@
                   <th>Nip</th>
                   <th>Nama</th>
                   <th>Jenis Kelamin</th>
-                  <th>Agama</th>
                   <th>Foto</th>
                   <th>Nama Jabatan</th>
-                  <th>Pendidikan</th>
                   <th>Status Kepegawaian</th>
                   <th>Alamat Lengkap</th>
                   <th>Aksi</th>
@@ -54,14 +52,14 @@
                  <td><?= $admin['nip'] ?></td> 
                  <td><?= $admin['nama'] ?></td> 
                  <td><?php if($admin['jk'] == "L"){ echo "Laki-Laki";}else{ echo "Perempuan";} ?></td>
-                 <td><?= $admin['agama'] ?></td>
                  <td><img src="<?= base_url('template/data/'.$admin['foto']) ?>" class="img-responsive" style="width: 100px;height: 100xp"></td>
                  <td><?= $admin['nama_jabatan'] ?></td>
-                 <td><?= $admin['pendidikan'] ?></td>
                  <td><?= $admin['status_kep'] ?></td>
                  <td><?= $admin['alamat'] ?></td>
                  <th>
-                    <input name="cari_p" class="cari_p" type="radio" value="<?= $admin['id_pegawai'] ?>">Pilih
+                    <label>
+                      <input name="cari_p" class="cari_p" type="radio" value="<?= $admin['id_pegawai'] ?>">Pilih
+                    </label>
                  </th>
                  </tr>
                  <?php $no++; endforeach; ?>

@@ -314,9 +314,11 @@ class Admin extends CI_controller
 
   public function absensi()
   {
-   $x = array('judul' =>'Absensi Pegawai',
-              'data'  =>$this->m_admin->pegawai()); 
-   tpl('admin/absensi',$x);
+    $id   = ($this->session->userdata('level') == "pegawai") ? $this->session->userdata('id_pegawai') : $this->session->userdata('id_admin');
+    $data = ($this->session->userdata('level') == "pegawai") ? $this->m_admin->cari_pegawai($id) : $this->m_admin->pegawai();
+    $x = array('judul' =>'Absensi Pegawai',
+              'data'  =>$data); 
+    tpl('admin/absensi',$x);
   }
 
 

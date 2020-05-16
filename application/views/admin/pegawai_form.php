@@ -39,12 +39,19 @@
 	                   <option value="budha">Budha</option>
 	                   <option value="hindu">Hindu</option>
 	                   <option value="konghucu">Konghucu</option>    
+	                   <option value="lainnya">Lainnya</option>    
 	                   </select></td></tr>
 <tr><th>Pendidikan</th><td><input type="text" name="pendidikan" value="<?= $pendidikan ?>" class="form-control" required=""></td></tr>
 <tr><th>Status Kepegawaian</th><td><input type="text" name="status_kep" value="<?= $status_kep ?>" class="form-control" required=""></td></tr>
 <tr><th>Alamat </th><td><input type="text" name="alamat" value="<?= $alamat ?>" class="form-control" required=""></td></tr>
 <tr><th>Username</th><td><input type="text" name="username" value="<?= $username ?>" class="form-control" required=""></td></tr>
-<tr><th>Password</th><td><input type="password" name="password" value="" class="form-control" disabled=""></td></tr>
+<?php
+	$disabled = "";
+	if($aksi == "edit"){
+		$disabled = "disabled";
+	}
+?>
+<tr><th>Password</th><td><input type="password" name="password" value="" class="form-control" <?= $disabled;?>></td></tr>
 <tr><td></td><td><input type="submit" name="kirim" value="Submit" class="btn btn-primary"> &nbsp;&nbsp;<input type="reset" name="g" value="Batal" class="btn btn-danger"></td></tr>
 
 </form>
@@ -52,5 +59,5 @@
 <?php 
 if($aksi == "edit"):
 ?>	
-<span><i>Jika Gambar yang di edit Tidak Disi Di kosongkan Saja</i></span>
+<span><i>Kosongkan gambar jika tidak ingin diganti.</i></span>
 <?php endif; ?>
