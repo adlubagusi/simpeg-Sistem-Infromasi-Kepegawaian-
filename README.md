@@ -1,4 +1,5 @@
 "# simpeg-Sistem-Infromasi-Kepegawaian-" 
+(Aplikasi ini sudah tidak dilakukan maintenance. Sehingga kemungkinan masih terdapat bug di dalamnya. Hanya disarankan untuk referensi/pembelajaran).
 1. import database pegawai.sql
 2. konfigurasi application/config/database.php
 3. buka http://localhost/simpeg-Sistem-Infromasi-Kepegawaian-
